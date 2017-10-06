@@ -35,6 +35,15 @@ public:
 	~RubixCubeFace() {}
 
 	std::vector<std::vector<int>> myFace;
+
+	//Returns A. the color that takes up the most spaces on this face and B. how many spaces it takes up
+	std::pair<COLORS, int> biggestColor();
+	
+	//Returns the number of rows that are all a single color--they don't all have to be the same color!
+	int numSolidRows();
+
+	//Same as above, but for columns instead
+	int numSolidCols();
 };
 
 
@@ -111,5 +120,33 @@ public:
 	
 	
 	*/
+
+	//Is solved fn
+
+	bool IsSolved() { return (faces[0].isSolved() && faces[1].isSolved() && faces[2].isSolved() && faces[3].isSolved() && faces[4].isSolved() && faces[5].isSolved()); }
+
+
+
+	//Fitness functions
+
+	//# of sides solved
+
+
+	//Max sides solved:  6
+	//Max rows & cols solved:  3 rows, 3 cols per face, 6 faces -- 3 x 6 = 18
+	//Max squares filled:  9 squares per face, 6 faces -- 9 x 6 = 54
+
+	int SidesSolved() { int count = 0; for (int i = 0; i < 6; i++) { if (faces[i].isSolved()) { count++; } }   return count; }
+	
+	//Returns number of rows that are a solid color
+	int RowsFilled();
+	//Same as above, but columns instead
+	int ColsFilled();
+
+	//For each color that dominates a particular face, it has some number of squares it takes up, more than any other color
+	//This function returns the sum of these
+	int SquaresFilled();
+
+
 };
 

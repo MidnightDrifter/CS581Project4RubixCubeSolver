@@ -95,3 +95,105 @@ void RubixCube::Twist(int rowCol, int index, int numTurns)
 		}
 	}
 }
+
+
+int RubixCube::RowsFilled()
+{
+	int out = faces[0].numSolidRows();
+
+	for (int i = 1; i < 6; i++)
+	{
+		out += faces[i].numSolidRows();
+	}
+	return out;
+}
+
+
+int RubixCube::ColsFilled()
+{
+
+	int out = faces[0].numSolidCols();
+
+	for (int i = 1; i < 6; i++)
+	{
+		out += faces[i].numSolidCols();
+	}
+
+	return out;
+}
+
+
+int RubixCube::SquaresFilled()
+{
+	int out = faces[0].biggestColor().second;
+
+	for (int i = 1; i < 6; i++)
+	{
+		out += faces[i].biggestColor().second;
+	}
+
+	return out;
+}
+
+
+
+std::pair<COLORS, int> RubixCubeFace::biggestColor()
+{
+	std::pair<COLORS, int> pairs[6] = { std::pair<COLORS,int>(COLORS::RED, 0),  std::pair<COLORS,int>(COLORS::YELLOW, 0), std::pair<COLORS,int>(COLORS::ORANGE, 0), std::pair<COLORS,int>(COLORS::GREEN, 0), std::pair<COLORS,int>(COLORS::BLUE, 0), std::pair<COLORS,int>(COLORS::WHITE, 0) };
+
+	for (int i = 0; i < myFace.size(); i++)
+	{
+		for (int j = 0; i < myFace[i].size(); j++)
+		{
+			for (int x = 0; x < 6; x++)
+			{
+				if (myFace[i][j] == (int)pairs[x].first)
+				{
+					pairs[x].second++;
+				}
+			}
+		}
+	}
+	
+	int maxIndex = 0;
+	for (int i = 1; i < 6; i++)
+	{
+		if (pairs[maxIndex].second < pairs[i].second)
+		{
+			maxIndex = i;
+		}
+	}
+
+	return pairs[maxIndex];
+
+}
+
+
+
+int RubixCubeFace::numSolidRows()
+{
+	int out = 0;
+
+	for (int i = 0; i < myFace.size(); i++)
+	{
+		if (myFace[i][0] == myFace[i][1] && myFace[i][1] == myFace[i][2])  //Can probably write this more generically to scale size of Rubix Cube more easily but eh
+		{
+			out++;
+		}
+	}
+	return out;
+}
+
+int RubixCubeFace::numSolidCols()
+{
+	int out = 0;
+
+	for (int i = 0; i < myFace[0].size(); i++)
+	{
+		if (myFace[0][i] == myFace[1][i] && myFace[1][i] == myFace[2][i])  //Can probably write this more generically to scale size of Rubix Cube more easily but eh
+		{
+			out++;
+		}
+	}
+	return out;
+}
