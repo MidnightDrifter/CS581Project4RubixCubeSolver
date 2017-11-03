@@ -2,7 +2,11 @@
 #include <random>
 const int STARTING_TURNS = 5;   //How many times to turn & jumble the Rubix Cube
 
+enum IndexToTurn { FIRST = 0, SECOND, LAST };
 
+enum RowOrColumn { ROW = 0, COLUMN };
+
+enum NumTurns { ONE = 0,TWO,THREE };
 
 const int MAX_SIDES_SOLVED = 6;		//Max sides solved:  6
 const int MAX_ROWS_COLS_SOLVED= 18;	//Max rows & cols solved:  3 rows, 3 cols per face, 6 faces -- 3 x 6 = 18
@@ -18,6 +22,12 @@ int main()
 	}
 
 
+
+
+
+	const int indexChoice = FIRST;
+	const int rowColumnChoice = ROW;
+	const int numTurnsChoice = ONE;
 
 	/*
 	
