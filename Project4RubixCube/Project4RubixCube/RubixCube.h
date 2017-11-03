@@ -14,6 +14,18 @@ public:
 	RubixCubeFace() : myFace(std::vector<std::vector<int>>(3, std::vector<int>(3, (int)COLORS::RED))) {}
 	RubixCubeFace(COLORS c) : myFace(std::vector<std::vector<int>>(3, std::vector<int>(3, (int)c))) {}
 
+	RubixCubeFace(const RubixCubeFace& other)
+	{
+		if (this != &other)
+		{
+			myFace = other.myFace;
+		}
+	}
+
+
+	
+
+
 	bool isSolved() const {
 
 		int c = myFace[0][0];
