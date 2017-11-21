@@ -1,7 +1,7 @@
 #pragma once
 #include <random>
 
-enum class COLORS { RED=0, BLUE, WHITE, GREEN, YELLOW, ORANGE };
+enum class COLORS { RED=0, BLUE, WHITE, GREEN, YELLOW, ORANGE, NUM };
 
 
 class RubixCubeFace
@@ -13,7 +13,7 @@ class RubixCubeFace
 public:
 	RubixCubeFace() : myFace(std::vector<std::vector<int>>(3, std::vector<int>(3, (int)COLORS::RED))) {}
 	RubixCubeFace(COLORS c) : myFace(std::vector<std::vector<int>>(3, std::vector<int>(3, (int)c))) {}
-
+	RubixCubeFace(int i) : myFace(std::vector<std::vector<int>>(3, std::vector<int>(3, i))) {}
 	RubixCubeFace(const RubixCubeFace& other)
 	{
 		if (this != &other)
@@ -65,14 +65,19 @@ public:
 	RubixCube()
 	{
 	//	faces = {  RubixCubeFace(COLORS::RED),  RubixCubeFace(COLORS::BLUE),  RubixCubeFace(COLORS::GREEN), RubixCubeFace(COLORS::ORANGE),  RubixCubeFace(COLORS::YELLOW),  RubixCubeFace(COLORS::WHITE) };
-	
+	/*
 		faces[0] = RubixCubeFace(COLORS::RED);
 		faces[1] = RubixCubeFace(COLORS::BLUE);
 		faces[2] = RubixCubeFace(COLORS::YELLOW);
 		faces[3] = RubixCubeFace(COLORS::GREEN);
 		faces[4] = RubixCubeFace(COLORS::WHITE);
 		faces[5] = RubixCubeFace(COLORS::ORANGE);
+		*/
 
+		for (int i = 0; i < (int)COLORS::NUM; i++)
+		{
+			faces[i] = RubixCubeFace(i);
+		}
 
 	
 	}

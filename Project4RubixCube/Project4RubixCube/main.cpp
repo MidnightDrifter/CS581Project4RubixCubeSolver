@@ -1,7 +1,7 @@
 #include "RubixCube.h"
 #include <random>
 #include <iostream>
-const int STARTING_TURNS = 5;   //How many times to turn & jumble the Rubix Cube
+const int STARTING_TURNS = 15;   //How many times to turn & jumble the Rubix Cube
 
 enum IndexToTurn { FIRST = 0, SECOND, LAST };
 
@@ -12,7 +12,7 @@ enum NumTurns { ONE = 0,TWO,THREE };
 const int MAX_SIDES_SOLVED = 6;		//Max sides solved:  6
 const int MAX_ROWS_COLS_SOLVED= 18;	//Max rows & cols solved:  3 rows, 3 cols per face, 6 faces -- 3 x 6 = 18
 const int MAX_SQUARES_FILLED=54;	//Max squares filled:  9 squares per face, 6 faces -- 9 x 6 = 54
-const unsigned MAX_ITERATIONS = 100000000;
+const unsigned MAX_ITERATIONS = 100000;
 const int NUM_ROTATIONS_ROWS = 1;
 const int NUM_ROTATIONS_COLS = 1;
 const int NUM_ROTATIONS_BOTH = 1;
@@ -33,14 +33,14 @@ int main()
 	
 	
 	while(numIterations <MAX_ITERATIONS)  // or for some number of iterations
-
 	{
 	numIterations++;
 
 	if(startingCube->IsSolved())
 	{
 		std::cout << "Rubix Cube SOLVED!  It took:  " << numIterations << " iterations after an initial " << STARTING_TURNS << "." << std::endl;
-		break;
+		return 1;
+		//break;
 	}
 
 
@@ -99,7 +99,7 @@ int main()
 	}
 	
 	
-	
+	std::cout << "Rubix cube unsolved after:  " << numIterations << " iterations with an initial " << STARTING_TURNS <<" turns." << std::endl;
 	return 0;
 	
 
