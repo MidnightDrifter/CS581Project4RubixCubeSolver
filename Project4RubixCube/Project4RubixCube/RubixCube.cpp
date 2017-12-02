@@ -28,7 +28,7 @@ void RubixCube::TurnRow(int row)
 
 void RubixCube::TurnColumn(int col)
 {
-	std::vector<int> temp[4];
+	std::vector<int> temp[4]{ std::vector<int>(3),std::vector<int>(3) ,std::vector<int>(3) ,std::vector<int>(3) };
 
 
 
@@ -58,22 +58,22 @@ void RubixCube::TurnColumn(int col)
 	//4->1
 	for (int i = 0; i < 3; i++)
 	{
-		faces[4].myFace[i][col] = temp[i][0];
+		faces[4].myFace[i][col] = temp[0][i];
 	}
 //3->4
 	for (int i = 0; i < 3; i++)
 	{
-		faces[3].myFace[i][col] = temp[i][1];
+		faces[3].myFace[i][col] = temp[1][i];
 	}
 //5->3	
 	for (int i = 0; i < 3; i++)
 	{
-		faces[5].myFace[i][col] = temp[i][2];
+		faces[5].myFace[i][col] = temp[2][i];
 	}
 //1->5
 	for (int i = 0; i < 3; i++)
 	{
-		faces[1].myFace[i][col] = temp[i][3];
+		faces[1].myFace[i][col] = temp[3][i];
 	}
 
 
@@ -146,7 +146,7 @@ std::pair<COLORS, int> RubixCubeFace::biggestColor()
 
 	for (int i = 0; i < myFace.size(); i++)
 	{
-		for (int j = 0; i < myFace[i].size(); j++)
+		for (int j = 0; j < myFace[i].size(); j++)
 		{
 			for (int x = 0; x < 6; x++)
 			{
