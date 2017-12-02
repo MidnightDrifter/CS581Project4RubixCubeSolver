@@ -97,7 +97,8 @@ public:
 	void TurnRow(int row);  //Turn row once
 	void TurnColumn(int col);  //Turn column once
 
-
+	void TurnRow(int row, int numTurns) { for (int i = 0; i < numTurns; i++) { this->TurnRow(row); } }
+	void TurnColumn(int col, int numTurns) { for (int i = 0; i < numTurns; i++) { this->TurnColumn(col); } }
 
 
 	~RubixCube() {};
